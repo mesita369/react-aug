@@ -1,12 +1,17 @@
 # react-aug
 
-Local ----> Git  ---> Fetch  --> Server
+Header
+   -Logo
+   -Search
+   -User
+Body
+   -Restaurent Cards
 
-Functional Component
-Class Component (Old)
+Footer
 
-let x = {
-    title:"WebLA"
-}
 
-let {title} = x
+
+
+Data Driven UI
+
+

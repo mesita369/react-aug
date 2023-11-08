@@ -5,8 +5,4 @@ const Search = () => {
     </div>)
 }
 
-export const test = () =>{
-
-}
-
 export default Search;

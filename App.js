@@ -1,26 +1,21 @@
 import ReactDOM from "react-dom/client";
 import React from "react";
 import Search from "./src/componets/Search";
-import { test } from "./src/componets/Search";
-
+import RestCard from "./src/componets/RestCard";
+import "./style.css"
+import restData from "./src/utilities/restData";
 //Functional Component
+
+
 const Header = () => {
-    return (<div>
-        <Title title="WebLA" />
+    return (<div className="header-content">
+        <img className="logo" src="https://t3.ftcdn.net/jpg/02/41/30/72/360_F_241307210_MjjaJC3SJy2zJZ6B7bKGMRsKQbdwRSze.jpg" />
+        <ul className="menu-items">
+            <li>Offers</li>
+            <li>Help</li>
+            <li>Sign in</li>
+        </ul>
         <Search />
-    </div>)
-}
-
-
-const Title = (prop) => {
-    return (<div>
-        <h1>{prop.title}</h1>
-    </div>)
-}
-
-const Banner = () => {
-    return (<div>
-        <h1>Banner</h1>
     </div>)
 }
 
@@ -28,15 +23,17 @@ const Banner = () => {
 const Body = () => {
     return (<div>
         <Header />
-        <Banner />
+        <div className="rest-container">
+            {restData.map((data) => {
+                return <RestCard />
+            })}
+        </div>
     </div>)
 }
 
 
 let root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Body />);
-
-
 
 
 
