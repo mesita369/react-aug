@@ -25,7 +25,7 @@ const Body = () => {
         <Header />
         <div className="rest-container">
             {restData.map((data) => {
-                return <RestCard />
+                return <RestCard  cardData = {data}/>
             })}
         </div>
     </div>)

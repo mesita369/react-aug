@@ -1,10 +1,29 @@
-const RestCard = () => {
+import { IMG_URL } from "../utilities/constants";
+const RestCard = ({ cardData }) => {
+    //console.log(cardData);
+    let { info: { name } } = cardData;
+    let { info: { avgRating: rating } } = cardData;
+    let { info: { cuisines } } = cardData;
+    let { info: { cloudinaryImageId: imageId } } = cardData;
+    let { info: { aggregatedDiscountInfoV3: discount } } = cardData
+    console.log(discount);
     return (<div className="rest-card">
-        <img className="rest-img" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/xtxi8kws7lmnwfardw0b"></img>
-        <p>Reatuarent Name</p>
-        <p>4 Rating</p>
-        <p>North Indian, Chinese, South Indian</p>
+        <div style={{position:"relative"}}>
+            <img className="rest-img" src={IMG_URL + imageId}></img>
+            <p className="discount-txt">{discount?.header + discount?.subHeader}</p>
+        </div>
+
+        <p>
+            {name}
+        </p>
+        <p>{rating ? rating : 0} Rating</p>
+        <p>{cuisines.join()}</p>
     </div>)
 }
 
+
 export default RestCard;
+
+
+
+
