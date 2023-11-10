@@ -22,21 +22,44 @@ const Header = () => {
 
 
 const Body = () => {
-    let [sum, setSum] = useState(10);
-    const addToSum = () => {
-        setSum(sum + 10);
+    let [rating, setRating] = useState(restData);
+    const isCheckedORNot = (redata) => {
+      let ischeck =  document.getElementById("rescheck").checked;
+      console.log(ischeck);  
+      if(ischeck){
+      console.log("checked");
+            let filteredData = redata.filter((data) => {
+            return data.info.avgRating > 4;
+        });
+        setRating(filteredData);
+    }else{
+        console.log("unchecked");
+        setRating(redata);
     }
+}
+ 
+    const getTopRated = (rdata) => {
+        let filteredData = rdata.filter((data) => {
+            return data.info.avgRating > 4;
+        });
+        setRating(filteredData);
+    }
+    
     return (<div>
         <Header />
         <div style={{ display: "flex" }}>
             <input></input>
             <button>Search</button>
-            <button id="btn" onClick={addToSum}>Add</button>
-            <p>Sum is : {sum}</p>
+            &nbsp;
+            <label>
+                <input id="rescheck" type="checkbox" onChange={()=>{isCheckedORNot(restData)}}/> Top Rated
+            </label>
+            &nbsp;
+            &nbsp;
+            <button id ="rating" onClick={()=>{getTopRated(restData)}}>Top Rated</button>
         </div>
         <div className="rest-container">
-
-            {restData.map((data) => {
+            {rating.map((data) => {
                 return <RestCard cardData={data} />
             })}
         </div>
