@@ -4,6 +4,7 @@ import Search from "./src/componets/Search";
 import RestCard from "./src/componets/RestCard";
 import "./style.css"
 import restData from "./src/utilities/restData";
+import { useState } from "react";
 //Functional Component
 
 
@@ -15,17 +16,28 @@ const Header = () => {
             <li>Help</li>
             <li>Sign in</li>
         </ul>
-        <Search />
     </div>)
 }
 
 
+
 const Body = () => {
+    let [sum, setSum] = useState(10);
+    const addToSum = () => {
+        setSum(sum + 10);
+    }
     return (<div>
         <Header />
+        <div style={{ display: "flex" }}>
+            <input></input>
+            <button>Search</button>
+            <button id="btn" onClick={addToSum}>Add</button>
+            <p>Sum is : {sum}</p>
+        </div>
         <div className="rest-container">
+
             {restData.map((data) => {
-                return <RestCard  cardData = {data}/>
+                return <RestCard cardData={data} />
             })}
         </div>
     </div>)
@@ -34,7 +46,6 @@ const Body = () => {
 
 let root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Body />);
-
 
 
 
