@@ -44,12 +44,31 @@ const Body = () => {
         });
         setRating(filteredData);
     }
+    const getSearchData = (event) => {
+        console.log("search called");
+        let searchValue = event.target.value;
+        if(searchValue.length > 3){
+            let filteredData = restData.filter((data) => {
+                return data.info.name.toLowerCase().includes(searchValue.toLowerCase());
+            });
+            setRating(filteredData);
+        }else{
+            setRating(restData);
+        }
+    }
+    const clearValues = (data) => {
+        document.getElementById("searchtext").value = "";
+        console.log("clear called");
+        document.getElementById("rescheck").checked = false;
+        setRating(data);
+    }
     
     return (<div>
         <Header />
         <div style={{ display: "flex" }}>
-            <input></input>
-            <button>Search</button>
+            &nbsp;
+            <input id ="searchtext" onChange={getSearchData}/>Search Resturent
+            &nbsp;
             &nbsp;
             <label>
                 <input id="rescheck" type="checkbox" onChange={()=>{isCheckedORNot(restData)}}/> Top Rated
@@ -57,6 +76,9 @@ const Body = () => {
             &nbsp;
             &nbsp;
             <button id ="rating" onClick={()=>{getTopRated(restData)}}>Top Rated</button>
+            &nbsp;
+            &nbsp;
+            <button id ="clear" onClick={()=>{clearValues(restData)}}>Clear</button>
         </div>
         <div className="rest-container">
             {rating.map((data) => {
